@@ -31,7 +31,7 @@ $ gitclear -local -E blah1 blah2
 $ gitclear -remote -D blah1 blah2
 ```
 
-The output will be as follows, confirmation will be prevent unwanted actions. if user type <code>y</code> then action will be continue as deletion operation otherwise <code>passed</code> will be displayed.
+The output will be as following, confirmation will be prevent unwanted actions. if user type <code>y</code> then action will be continue as deletion operation otherwise <code>passed</code> will be displayed.
 ```bash
 blah1  branch will be deleted from the  test  repo
 Continue (y/n)? _
