@@ -7,20 +7,22 @@ Setup
 -----
 So simple, copy the file into local bin directory as following, assumming in your terminal you are in downloaded directory and as sudo (admin user) then change the rights for users for executing the file.
 
-<code>cp gitclear /usr/local/bin/.;chmod u+x /usr/local/bin/gitclear</code>
+```bash
+$ cp gitclear /usr/local/bin/.;chmod u+x /usr/local/bin/gitclear
+```
 
 Usage
 -----
 To delete <i>blah1</i> and <i>blah2</i> branch from local;...
 
-<code>
-gitclear -local -D blah1 blah2
-</code>
+```bash
+$ gitclear -local -D blah1 blah2
+```
 
 ...or to delete all branches except <i>blah1</i> and <i>blah2</i> from local;
 
-<code>
-gitclear -local -E blah1 blah2
-</code>
+```bash
+$ gitclear -local -E blah1 blah2
+```
 
 NOTE: remote deletion will be implemented soon
