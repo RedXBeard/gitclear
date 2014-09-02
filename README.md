@@ -7,7 +7,7 @@ Setup
 -----
 So simple, copy the file into local bin directory as following, assumming in your terminal you are in downloaded directory and as sudo (admin user) then change the rights for users for executing the file.
 
-<code>cp gitclear /usr/local/bin/.;chmod u+x gitclear</code>
+<code>cp gitclear /usr/local/bin/.;chmod u+x /usr/local/bin/gitclear</code>
 
 Usage
 -----
