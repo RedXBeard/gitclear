@@ -1,8 +1,8 @@
 #!/bin/bash -
-#title			:git_clear
+#title			:gitclear
 #author		 	:Barbaros Yıldırım (barbarosaliyildirim@gmail.com)
 #date			:20140902
-#version		:0.0.3
+#version		:0.1.0
 #usage			:copy this script into /usr/local/bin folder and
 #				 give required rights as executability
 #==============================================================================
@@ -14,7 +14,11 @@ act="$2"
 PLACES="-local -remote"
 ACTIONS="-D -E"
 
-
+## Where to delete or keep operation will going on
+## has to be decided, by the given params
+## first params are controlled for this operation
+## '-local' or '-remote' string arrays are possible ones
+## other wise error will be shown.
 count=0
 plc_flag=""
 for i in $PLACES; do
@@ -48,6 +52,13 @@ fi
 #	act="$3"
 #fi
 
+## when the first params are checked
+## then the second checking operation moved on as
+## up coming params will be kept in any circumstances
+## or they are signed as deleted in any case
+## decision is one of '-D' or '-E'
+## any or none of them seen nothing happened and
+## error will shown.
 flag=""
 count=0
 for i in $ACTIONS; do
@@ -68,13 +79,14 @@ if [ "$flag" = "" ]; then
     exit
 fi
 
+## Moved twice, to get famous branch names list
 shift && shift
 #if [[ $old =~ $re ]] && [ "$plc_flag" = "remote"]; then
 #	shift
 #fi
 
 ## To take all wanted branch list which could be
-## wanted ones to delete or wanted ones to keep
+## wanted ones to delete or to keep
 branches=$@
 ## sys call as git branch will also returned actual files and dictionaries
 ## to be sure exact branch names, double check has to be performed.
@@ -114,10 +126,42 @@ done
 
 ## After all processes is done, collected branches ready to delete.
 for b in $BRANCHES; do
+    ## For each remote deletion branch list must be reset, not to try,
+    ## already removed in last iteration, branch to delete from the repo
+    ORIGINAL_BRANCHES=""
+
+    ## For local deletion.
     if [ "$b" != "master" ] && [ "$plc_flag" = "local" ]; then
         git branch -D $b
+
+    ## Or remote delete operation.
     elif [ "$b" != "master" ] && [ "$plc_flag" = "remote" ]; then
-        # TODO: implementation.
-        echo $b
+        ## find out the possible repos
+        ## could be dev origin etc ones.
+        ## And delete operation will be
+        ## done for each of theö
+        REPOS=$(git remote)
+        for repo in $REPOS; do
+            result=$(git branch -r --list $repo/$b)
+            if [ "$result" != "" ]; then
+                ORIGINAL_BRANCHES="$ORIGINAL_BRANCHES $repo/$b"
+            fi
+        done
+        ## After finding out the exact branch names
+        ## which contains repo and displayed branch names
+        ## names are seperated from each other and
+        ## git operation will be performed
+        for o_branch in $ORIGINAL_BRANCHES; do
+            branch_re="${o_branch//// }"
+            read -a arr <<<$branch_re
+            echo
+            echo "$(tput setaf 1)$(tput setab 7) ${arr[1]} $(tput setab 0) branch will be deleted from the $(tput setab 7) ${arr[0]} $(tput setab 0) repo$(tput sgr 0)$(tput bel)"
+            read -p "Continue (y/n)? " CONT
+            if [ "$CONT" == "y" ]; then
+                git push ${arr[0]} :${arr[1]}
+            else
+                echo "passed"
+            fi
+        done
     fi
 done

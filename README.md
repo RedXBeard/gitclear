@@ -25,6 +25,18 @@ $ gitclear -local -D blah1 blah2
 $ gitclear -local -E blah1 blah2
 ```
 
-Known Issues
-------------
-- [ ] Remotely deletion will be implemented
+... from test repo itself as an example;
+
+```bash
+$ gitclear -remote -D blah1 blah2
+```
+
+The output will be as follows, confirmation will be prevent unwanted actions. if user type <code>y</code> then action will be continue as deletion operation otherwise <code>passed</code> will be displayed.
+```bash
+blah1  branch will be deleted from the  test  repo
+Continue (y/n)? _
+```
+
+Coming Soon
+-----------
+- [ ] regex operation will be added.
