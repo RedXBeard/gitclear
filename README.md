@@ -25,4 +25,6 @@ $ gitclear -local -D blah1 blah2
 $ gitclear -local -E blah1 blah2
 ```
 
-NOTE: remote deletion will be implemented soon
+Known Issues
+------------
+- [ ] Remotely deletion will be implemented
