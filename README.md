@@ -5,7 +5,7 @@ Sometimes or after a while, during a project, merged branches become too much to
 
 Setup
 -----
-So simple, copy the file into local bin directory as following, assumming in your terminal you are in downloaded directory and as sudo (admin user) then change the rights for users for executing the file.
+So simple, copy the file into local bin directory as following, assumming in your terminal you are in downloaded directory and as sudo (admin user).
 
 ```bash
 $ cp gitclear.sh /usr/local/bin/gitclear;chmod u+x /usr/local/bin/gitclear
