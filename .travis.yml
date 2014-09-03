@@ -1,3 +1,4 @@
 language: shell
+script: cp gitclear.sh /usr/local/bin/gitclear;gitclear -local -D 1
 notifications:
   - email: true
