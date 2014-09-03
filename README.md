@@ -33,10 +33,23 @@ $ gitclear -remote -D blah1 blah2
 
 The output will be as following, confirmation will be prevent unwanted actions. if user type <code>y</code> then action will be continue as deletion operation otherwise <code>passed</code> will be displayed.
 ```bash
-blah1  branch will be deleted from the  test  repo
+ blah1  branch will be deleted from the  test  repo
 Continue (y/n)? _
 ```
 
-Coming Soon
------------
-- [ ] regex operation will be added.
+To write all branches down is hard then developers can use regex alternative as following as an example; to delete local numerically named branches
+
+```bash
+$ gitclear -local -D ^[0-9]+$
+```
+
+... Regex could be typed wrong, to prevent this unfortunate mistake, questioned all actions as following screen will be displayed for previously given example, to be sure that action exactly what developers want...
+
+```bash
+ 1123  branch will be deleted from local
+Continue (y/n) ? _
+```
+
+... If the answer is <code>y</code> then action will be deletion otherwise the string, <code>passed</code>, will be displayed, just for info.
+
+
