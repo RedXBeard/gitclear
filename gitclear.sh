@@ -2,7 +2,7 @@
 #title			:gitclear
 #author		 	:Barbaros Yıldırım (barbarosaliyildirim@gmail.com)
 #date			:20140902
-#version		:0.1.1
+#version		:0.1.2
 #usage			:copy this script into /usr/local/bin folder and
 #				 give required rights as executability
 #==============================================================================
@@ -10,7 +10,6 @@
 
 plc="$1"
 act="$2"
-#old="$2"
 PLACES="-local -remote"
 ACTIONS="-D -E"
 
@@ -38,19 +37,6 @@ if [ "$plc_flag" = "" ]; then
     '-remote' for remote branches"
     exit
 fi
-
-#re='^[0-9]+$'
-#if [ "$plc_flag" = "remote" ] && ! [[ $old =~ $re ]]; then
-#	echo "Error occured..
-#	usage: 'git_clean -local 30 -D blah_branch' "
-#	exit
-#fi
-
-#if [ "$plc_flag" = "local" ]; then
-#	act="$2"
-#else
-#	act="$3"
-#fi
 
 ## when the first params are checked
 ## then the second checking operation moved on as
