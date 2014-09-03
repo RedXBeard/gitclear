@@ -2,7 +2,7 @@
 #title			:gitclear
 #author		 	:Barbaros Yıldırım (barbarosaliyildirim@gmail.com)
 #date			:20140902
-#version		:0.1.0
+#version		:0.1.1
 #usage			:copy this script into /usr/local/bin folder and
 #				 give required rights as executability
 #==============================================================================
@@ -18,7 +18,7 @@ ACTIONS="-D -E"
 ## has to be decided, by the given params
 ## first params are controlled for this operation
 ## '-local' or '-remote' string arrays are possible ones
-## other wise error will be shown.
+## otherwise error will be shown.
 count=0
 plc_flag=""
 for i in $PLACES; do
@@ -90,7 +90,7 @@ shift && shift
 branches=$@
 ## sys call as git branch will also returned actual files and dictionaries
 ## to be sure exact branch names, double check has to be performed.
-ALL=$(git branch)
+ALL=$(git branch --merged)
 LS=$(ls)
 
 ## By default master branch taken as movement point
@@ -111,10 +111,18 @@ for a in $ALL; do
     ## signed for deletion or keeping
     if [ $br_flag -eq 0 ]; then
         de_flag=0
-        if [ "$flag" = "direct" ] && [ "$(echo $branches | grep $a)" != "" ]; then
-            de_flag=1
-        elif [ "$flag" = "except" ] && [ "$(echo $branches | grep $a)" = "" ]; then
-            de_flag=1
+        if [ "$flag" = "direct" ]; then
+            if [ "$(echo "${branches[@]:0}" | grep -o $a)" != "" ];then
+                de_flag=1
+            elif [[ $a =~ $branches ]]; then
+                de_flag=1
+            fi
+        elif [ "$flag" = "except" ];then
+            if [ "$(echo "${branches[@]:0}" | grep -o $a)" = "" ];then
+                de_flag=1
+            elif ! [[ "$a" =~ "$branches" ]]; then
+                de_flag=1
+            fi
         fi
 
         ## if named branch can be deleted then keep it in a list.
@@ -132,7 +140,13 @@ for b in $BRANCHES; do
 
     ## For local deletion.
     if [ "$b" != "master" ] && [ "$plc_flag" = "local" ]; then
-        git branch -D $b
+        echo "$(tput setaf 1)$(tput setab 7) $b $(tput setab 0) branch will be deleted from local$(tput sgr 0)$(tput bel)"
+        read -p "Continue (y/n)? " CONT
+        if [ "$CONT" == "y" ]; then
+            git branch -D $b
+        else
+            echo "passed"
+        fi
 
     ## Or remote delete operation.
     elif [ "$b" != "master" ] && [ "$plc_flag" = "remote" ]; then
