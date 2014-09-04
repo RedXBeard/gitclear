@@ -2,7 +2,7 @@
 #title			:gitclear
 #author		 	:Barbaros Yıldırım (barbarosaliyildirim@gmail.com)
 #date			:20140902
-#version		:0.1.3
+#version		:0.1.4
 #usage			:copy this script into /usr/local/bin folder and
 #				 give required rights as executability
 #==============================================================================
