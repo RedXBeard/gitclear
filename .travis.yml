@@ -1,3 +1,5 @@
 language: shell script
+script: 
+- "pwd"
 notifications:
   - email: true
