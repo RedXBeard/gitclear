@@ -1,5 +1,5 @@
 language: shell script
 script: 
-- "pwd"
+- "bash gitclear.sh -local -D 1"
 notifications:
   - email: true
