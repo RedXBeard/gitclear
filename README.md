@@ -6,10 +6,10 @@ Sometimes or after a while, during a project, merged branches become too much to
 
 Setup
 -----
-So simple, copy the file into local bin directory as following, assumming in your terminal you are in downloaded directory and as sudo (admin user).
+So simple, in the downloaded directory untar the ball, go into the coming up directory then type the following. that script will copy the main one into local/bin directory.
 
 ```bash
-$ cp gitclear.sh /usr/local/bin/gitclear;chmod u+x /usr/local/bin/gitclear
+$ bash install.sh
 ```
 
 Usage
@@ -52,5 +52,3 @@ Continue (y/n) ? _
 ```
 
 ... If the answer is <code>y</code> then action will be deletion otherwise the string, <code>passed</code>, will be displayed, just for info.
-
-
