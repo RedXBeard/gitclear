@@ -1,5 +1,5 @@
 language: shell script
 script: 
-- "bash gitclear.sh -local -D 1"
+- "bash gitclear.sh -local -D test"
 notifications:
   - email: true
