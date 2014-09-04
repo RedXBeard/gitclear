@@ -1,5 +1,6 @@
 gitclear
 ========
+[![Build Status](https://travis-ci.org/RedXBeard/gitclear.svg?branch=master)](https://travis-ci.org/RedXBeard/gitclear)
 
 Sometimes or after a while, during a project, merged branches become too much to display or to manage, to prevent this, lets say garbage, developers should delete some of them out locally or remotely. This script will help all developers who has git repositories for their projects to clean 'git brach' or 'git branch --all' or 'git branch (repo_name)' outputs.
 
