@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gitclear by RedXBeard</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/RedXBeard/gitclear">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/RedXBeard/gitclear/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/RedXBeard/gitclear/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Gitclear</h1>
+          <p>Sometimes or after a while during a project merged branches become too much, to prevent this, lets say garbage, developers should delete some of them out. This script will help all developers who has git repositories for their projects to clean &#39;git brach&#39; or &#39;git branch --all&#39; or &#39;git branch (repo_name)&#39; outputs.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/RedXBeard">RedXBeard</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="gitclear" class="anchor" href="#gitclear"><span class="octicon octicon-link"></span></a>gitclear</h1>
+
+<p><a href="https://travis-ci.org/RedXBeard/gitclear"><img src="https://travis-ci.org/RedXBeard/gitclear.svg?branch=master" alt="Build Status"></a></p>
+
+<p>Sometimes or after a while, during a project, merged branches become too much to display or to manage, to prevent this, lets say garbage, developers should delete some of them out locally or remotely. This script will help all developers who has git repositories for their projects to clean 'git brach' or 'git branch --all' or 'git branch (repo_name)' outputs.</p>
+
+<h2>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>So simple, in the downloaded directory untar the ball, go into the coming up directory then type the following. that script will copy the main one into local/bin directory.</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>bash install.sh
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>To delete <i>blah1</i> and <i>blah2</i> branch from local;...</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>gitclear -local -D blah1 blah2
+</pre></div>
+
+<p>...or to delete all branches except <i>blah1</i> and <i>blah2</i> from local;</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>gitclear -local -E blah1 blah2
+</pre></div>
+
+<p>... from test repo itself as an example;</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>gitclear -remote -D blah1 blah2
+</pre></div>
+
+<p>The output will be as following, confirmation will be prevent unwanted actions. if user type <code>y</code> then action will be continue as deletion operation otherwise <code>passed</code> will be displayed.</p>
+
+<div class="highlight highlight-bash"><pre> blah1  branch will be deleted from the  <span class="nb">test  </span>repo
+Continue <span class="o">(</span>y/n<span class="o">)</span>? _
+</pre></div>
+
+<p>To write all branches down is hard then developers can use regex alternative as following as an example; to delete local numerically named branches</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>gitclear -local -D ^<span class="o">[</span>0-9<span class="o">]</span>+<span class="err">$</span>
+</pre></div>
+
+<p>... Regex could be typed wrong, to prevent this unfortunate mistake, questioned all actions as following screen will be displayed for previously given example, to be sure that action exactly what developers want...</p>
+
+<div class="highlight highlight-bash"><pre> <span class="m">1123</span>  branch will be deleted from <span class="nb">local</span>
+Continue <span class="o">(</span>y/n<span class="o">)</span> ? _
+</pre></div>
+
+<p>... If the answer is <code>y</code> then action will be deletion otherwise the string, <code>passed</code>, will be displayed, just for info.</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
