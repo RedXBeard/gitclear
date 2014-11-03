@@ -76,7 +76,7 @@ shift && shift
 branches=$@
 ## sys call as git branch will also returned actual files and dictionaries
 ## to be sure exact branch names, double check has to be performed.
-ALL=$(git branch --merged)
+ALL=$(git branch)
 LS=$(ls)
 
 ## By default master branch taken as movement point
